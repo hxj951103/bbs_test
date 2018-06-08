@@ -16,6 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from post import views as post_view
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^$', post_view.post_list, name='post_list'),
+    url(r'^post/create/', post_view.create, name='post_create'),
+    url(r'^post/read/', post_view.read, name='post_read'),
+    url(r'^post/edit/', post_view.edit, name='post_edit'),
+    url(r'^post/search/', post_view.search, name='post_search'),
 ]
