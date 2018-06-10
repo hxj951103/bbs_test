@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'post'
+    'post',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "statics"),
+]
+
+MEDIA_URL = '/medias/'
+
+# 使用 Redis 做缓存
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",  # 存储引擎
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PICKLE_VERSION": -1,
+        }
+    }
+}
